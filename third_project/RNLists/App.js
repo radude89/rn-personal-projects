@@ -20,11 +20,16 @@ export default function App() {
           ItemSeparatorComponent={
             <View style={{ height: 32 }} />
           }
-          contentContainerStyle={{ flexGrow: 1 }}
           ListEmptyComponent={
             <View style={styles.listEmptyContainer}>
               <Text style={styles.listEmpty}>No items found</Text>
             </View>
+          }
+          ListHeaderComponent={
+            <Text style={styles.headerList}>Pokemons</Text>
+          }
+          ListFooterComponent={
+            <Text style={styles.footerText}>End of list</Text>
           }
         />
       </View>
@@ -59,5 +64,15 @@ const styles = StyleSheet.create({
   listEmpty: {
     fontSize: 40,
     textAlign: 'center',
+  },
+  headerList: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 12
+  },
+  footerText: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginTop: 12
   }
 });
