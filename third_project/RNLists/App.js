@@ -1,22 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import pokemonList from './data.json'
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-      {
-        pokemonList.map(pokemon => {
-          return (
-            <View style={styles.card} key={pokemon.id}>
-              <Text style={styles.cardText}>{pokemon.type}</Text>
-              <Text style={styles.cardText}>{pokemon.name}</Text>
-            </View>
-          )
-        })
-      }
-      </ScrollView>
+      <View style={styles.scrollView}>
+        <FlatList
+          data={pokemonList}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.card} key={item.id}>
+                <Text style={styles.cardText}>{item.type}</Text>
+                <Text style={styles.cardText}>{item.name}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item, index) => item.id.toString()}
+        />
+      </View>
     </SafeAreaView>
   );
 }
