@@ -1,36 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, SectionListComponent, SectionList } from 'react-native';
 import pokemonList from './data.json'
+import groupedPokemonList from './grouped-data.json'
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.scrollView}>
-        <FlatList
-          data={pokemonList}
+        <SectionList
+          sections={groupedPokemonList}
           renderItem={({ item }) => {
             return (
-              <View style={styles.card} key={item.id}>
-                <Text style={styles.cardText}>{item.type}</Text>
-                <Text style={styles.cardText}>{item.name}</Text>
+              <View style={styles.card}>
+                <Text style={styles.cardText}>{item}</Text>
               </View>
             );
           }}
-          keyExtractor={(item, index) => item.id.toString()}
-          ItemSeparatorComponent={
-            <View style={{ height: 32 }} />
-          }
-          ListEmptyComponent={
-            <View style={styles.listEmptyContainer}>
-              <Text style={styles.listEmpty}>No items found</Text>
-            </View>
-          }
-          ListHeaderComponent={
-            <Text style={styles.headerList}>Pokemons</Text>
-          }
-          ListFooterComponent={
-            <Text style={styles.footerText}>End of list</Text>
-          }
+          renderSectionHeader={({ section }) => (
+            <Text style={styles.sectionHeaderText}>{section.type}</Text>
+          )}
+          ItemSeparatorComponent={() => <View style={{height: 16 }} />}
+          SectionSeparatorComponent={() => <View style={{height: 16 }} />}
         />
       </View>
     </SafeAreaView>
@@ -74,5 +64,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginTop: 12
+  },
+  sectionHeaderText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    paddingHorizontal: 16
   }
 });
