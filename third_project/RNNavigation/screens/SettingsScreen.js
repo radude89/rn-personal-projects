@@ -1,0 +1,23 @@
+import { View, Text, StyleSheet } from 'react-native';
+const SettingsdScreen = () => {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.text}>Settings Screen</Text>
+        </View>
+    );
+};
+
+export default SettingsdScreen;
+
+const styles = StyleSheet.create({
+   container: {
+       flex: 1,
+       alignItems: 'center',
+       justifyContent: 'center',
+   },
+   text: {
+       fontSize: 24,
+       fontWeight: 'bold',
+       marginBottom: 16,
+   } 
+});

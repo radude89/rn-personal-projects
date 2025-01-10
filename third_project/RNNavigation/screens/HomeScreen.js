@@ -8,7 +8,9 @@ export default function HomeScreen({ navigation, route }) {
             <Button 
                 title="Go to About" 
                 onPress={() => 
-                    navigation.navigate('About')
+                    navigation.navigate('About', {
+                        name: 'RDev'
+                    })
                 } 
             />
         </View>
